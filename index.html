@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./vue.js" defer></script>
+    <style>
+        body{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("https://i.blogs.es/5f84a5/luffy2/1366_2000.jpg");
+            background-color: lightskyblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        #app{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            margin: 4rem auto;
+        }
+        .input_container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input{
+            width: 100%;
+            margin: 1rem;
+            outline: none;
+            padding: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            background:rgba(255, 255, 255, 0.685);
+            border: none;
+            border-bottom: 4px solid#e5287786;
+            color: #0e69af;
+        }
+
+        input:focus{
+            border-bottom: 4px solid#0e69af;
+            color: #0e69af;
+        }
+
+        input::placeholder {
+            color: rgba(0, 0, 0, 0.493);
+
+        }
+
+        .animeItem {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 450px;
+            text-align: center;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border: 1px solid gray;
+            background: #2c2f41;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            transition: all ease 10ms;
+        }
+
+        .animeItem:hover{
+            transform: skewX(5deg);
+        }
+
+        span{
+            padding-left: 1rem;
+        }
+
+        .button_container{
+            display: flex;
+        }
+
+        button {
+            margin:0;
+            border: none;
+            outline: none;
+            text-align: center;
+            width: 100px;
+            padding: 1rem;
+            font-size: 1rem;
+            height: 100%;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        button.delete{
+            background: #f14747;
+            cursor: pointer;
+            border-left: 1px solid white;
+        }
+        button.edit{
+            background: #7c9488fa;
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+            cursor: pointer;
+        }
+        
+        button.edit:hover{
+            background: #45b67e;
+        }
+
+        button.delete:hover{
+            background: #df1414;
+        }
+
+
+        h1{
+            color:#1b2f96;
+            font-size: 3rem;
+            /* background: #ffffff1c; */
+            text-shadow: 0px 0px 10px #d7b53c;
+        }
+    </style>
+</head>
+<body>
+    <h1>ANIMES CRUD WITH VUE JS</h1>
+    <div id="app">
+        <div class="input_container">
+            <input 
+                type="text" 
+                placeholder="Write your fav anime"
+                v-model="anime"
+                v-on:keyup.enter="addItem"
+        >
+    
+            <!-- <button  v-if="!isEditting" v-on:click="addItem">Add</button> -->
+            <!-- <button  v-else v-on:click="updateItem">Update</button> -->
+        </div>
+
+            <div v-for="(anime,index) in animes" class="animeItem">
+                <span>
+                    {{anime.name}}
+                </span>
+
+                <div class="button_container">
+                    <button class="edit"v-on:click="editItem(index)" >edit</button>
+                    <button class="delete" v-on:click="deleteItem(index)">delete</button>
+                </div>
+            </div>
+
+    </div>
+ 
+</body>
+</html>
